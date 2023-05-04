@@ -29,6 +29,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _temperature = 25;
+  double _humidity = 30.0;
+  double _moisture = 50.0;
 
   void _updateTemperature(int value) {
     setState(() {
@@ -62,26 +64,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       RadialAxis(
                         minimum: 0,
                         maximum: 100,
-                        showLabels: false,
-                        showTicks: false,
+                        showLabels: true,
+                        showTicks: true,
                         axisLineStyle: const AxisLineStyle(
                           thickness: 0.2,
                           cornerStyle: CornerStyle.bothCurve,
                           color: Color.fromARGB(30, 0, 169, 181),
                           thicknessUnit: GaugeSizeUnit.factor,
                         ),
-                        pointers: const <GaugePointer>[
+                        pointers:  <GaugePointer>[
                           RangePointer(
-                            value: 80,
+                            value: _humidity.toDouble(),
                             width: 0.2,
                             sizeUnit: GaugeSizeUnit.factor,
                           ),
-                          NeedlePointer(
-                            value: 80,
+                           NeedlePointer(
+                            value: _humidity.toDouble(),
                             needleLength: 0.7,
                             lengthUnit: GaugeSizeUnit.factor,
                             needleColor: Color.fromARGB(180, 0, 169, 181),
-                            knobStyle: KnobStyle(
+                            knobStyle: const KnobStyle(
                                 knobRadius: 0.07,
                                 sizeUnit: GaugeSizeUnit.factor,
                                 color: Color.fromARGB(180, 0, 169, 181)),
@@ -105,26 +107,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       RadialAxis(
                         minimum: 0,
                         maximum: 100,
-                        showLabels: false,
-                        showTicks: false,
+                        showLabels: true,
+                        showTicks: true,
                         axisLineStyle: const AxisLineStyle(
                           thickness: 0.2,
                           cornerStyle: CornerStyle.bothCurve,
                           color: Color.fromARGB(30, 225, 138, 24),
                           thicknessUnit: GaugeSizeUnit.factor,
                         ),
-                        pointers: const <GaugePointer>[
+                        pointers:  <GaugePointer>[
                           RangePointer(
-                            value: 80,
+                            value: _moisture.toDouble(),
                             width: 0.2,
                             sizeUnit: GaugeSizeUnit.factor,
                           ),
                           NeedlePointer(
-                            value: 80,
+                            value: _moisture.toDouble(),
                             needleLength: 0.7,
                             lengthUnit: GaugeSizeUnit.factor,
                             needleColor: Color.fromARGB(180, 234, 214, 37),
-                            knobStyle: KnobStyle(
+                            knobStyle: const KnobStyle(
                                 knobRadius: 0.07,
                                 sizeUnit: GaugeSizeUnit.factor,
                                 color: Color.fromARGB(180, 0, 169, 181)),

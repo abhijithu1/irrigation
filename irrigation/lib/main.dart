@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber[400],
+        shadowColor: Colors.redAccent,
         centerTitle: true,
         title: const Text(
           "IRRIGATION",
@@ -135,7 +136,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             value: _moisture.toDouble(),
                             needleLength: 0.7,
                             lengthUnit: GaugeSizeUnit.factor,
-                            needleColor: const Color.fromARGB(180, 212, 20, 164),
+                            needleColor:
+                                const Color.fromARGB(180, 212, 20, 164),
                             knobStyle: const KnobStyle(
                                 knobRadius: 0.07,
                                 borderWidth: 0.02,
@@ -163,6 +165,27 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               'Temperature: ${_temperature.toString()} C',
               style: const TextStyle(fontSize: 16),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  style: const ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Colors.green),
+                  ),
+                  child: const Text('AUTO MODE'),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: const ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Colors.green),
+                  ),
+                  child: const Text('MANUAL MODE'),
+                ),
+              ],
             )
           ],
         ),

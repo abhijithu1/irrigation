@@ -28,7 +28,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _temperature = 25;
+  int _temperature = 45;
   final _humidity = 100.0;
   final _moisture = 50.0;
 
@@ -170,7 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ThirdScreen(),
+                        ));
+                  },
                   style: const ButtonStyle(
                     backgroundColor:
                         MaterialStatePropertyAll<Color>(Colors.green),
@@ -178,7 +184,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const Text('AUTO MODE'),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SecondScreen(),
+                        ));
+                  },
                   style: const ButtonStyle(
                     backgroundColor:
                         MaterialStatePropertyAll<Color>(Colors.green),
@@ -191,5 +203,130 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+}
+
+class SecondScreen extends StatefulWidget {
+  const SecondScreen({Key? key}) : super(key: key);
+
+  @override
+  _SecondScreenState createState() => _SecondScreenState();
+}
+
+class _SecondScreenState extends State<SecondScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.amber[400],
+        shadowColor: Colors.redAccent,
+        centerTitle: true,
+        title: const Text(
+          "MANUAL MODE",
+          style: TextStyle(
+            color: Colors.green,
+          ),
+        ),
+      ),
+      backgroundColor: Colors.white,
+    );
+  }
+}
+
+class ThirdScreen extends StatefulWidget {
+  const ThirdScreen({Key? key}) : super(key: key);
+
+  @override
+  _ThirdScreenState createState() => _ThirdScreenState();
+}
+
+class _ThirdScreenState extends State<ThirdScreen> {
+  int? hour;
+  int? min;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.amber[400],
+          shadowColor: Colors.redAccent,
+          centerTitle: true,
+          title: const Text(
+            "IRRIGATION",
+            style: TextStyle(
+              color: Colors.green,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 16.0),
+              ),
+              Container(
+                alignment: Alignment.topCenter,
+                child: const Text(
+                  'AUTO MODE',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 36, 39, 138),
+                    fontSize: 20.0,
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: const Text("On time",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 175, 7, 7),
+                  fontSize: 25,
+                ),),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: 'Hour',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty){
+                          return "Please Enter the Hour.";
+                        }
+                        return null;
+                      },
+                      onSaved: (value){
+                        hour = int.parse(value!);
+                      },
+                    ),
+                  ),
+                  Expanded(child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: "Minutes",
+                      border: OutlineInputBorder(),
+                      
+                    ),
+                    validator: (value) {
+                        if (value == null || value.isEmpty){
+                          return "Please Enter the Minute.";
+                        }
+                        return null;
+                      },
+                      onSaved: (value){
+                        min = int.parse(value!);
+                      },
+                  ))
+                ],
+              )
+            ],
+          ),
+        ));
   }
 }

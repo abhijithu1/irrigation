@@ -29,14 +29,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _temperature = 25;
-  double _humidity = 30.0;
-  double _moisture = 50.0;
+  final _humidity = 100.0;
+  final _moisture = 50.0;
 
   void _updateTemperature(int value) {
     setState(() {
       _temperature = value;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,25 +70,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         axisLineStyle: const AxisLineStyle(
                           thickness: 0.2,
                           cornerStyle: CornerStyle.bothCurve,
-                          color: Color.fromARGB(30, 0, 169, 181),
+                          color: Color.fromARGB(30, 225, 138, 24),
                           thicknessUnit: GaugeSizeUnit.factor,
                         ),
-                        pointers:  <GaugePointer>[
+                        pointers: <GaugePointer>[
                           RangePointer(
                             value: _humidity.toDouble(),
                             width: 0.2,
                             sizeUnit: GaugeSizeUnit.factor,
                           ),
-                           NeedlePointer(
+                          NeedlePointer(
                             value: _humidity.toDouble(),
                             needleLength: 0.7,
                             lengthUnit: GaugeSizeUnit.factor,
-                            needleColor: Color.fromARGB(180, 0, 169, 181),
+                            needleColor:
+                                const Color.fromARGB(180, 212, 20, 164),
+                            enableAnimation: true,
+                            animationType: AnimationType.bounceOut,
+                            animationDuration: 1500,
                             knobStyle: const KnobStyle(
                                 knobRadius: 0.07,
+                                borderWidth: 0.02,
+                                borderColor: Colors.red,
                                 sizeUnit: GaugeSizeUnit.factor,
-                                color: Color.fromARGB(180, 0, 169, 181)),
-                          ),
+                                color: Color.fromARGB(180, 17, 176, 30)),
+                          )
                         ],
                       )
                     ],
@@ -115,21 +122,26 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color.fromARGB(30, 225, 138, 24),
                           thicknessUnit: GaugeSizeUnit.factor,
                         ),
-                        pointers:  <GaugePointer>[
+                        pointers: <GaugePointer>[
                           RangePointer(
                             value: _moisture.toDouble(),
                             width: 0.2,
                             sizeUnit: GaugeSizeUnit.factor,
                           ),
                           NeedlePointer(
+                            enableAnimation: true,
+                            animationType: AnimationType.bounceOut,
+                            animationDuration: 1500,
                             value: _moisture.toDouble(),
                             needleLength: 0.7,
                             lengthUnit: GaugeSizeUnit.factor,
-                            needleColor: Color.fromARGB(180, 234, 214, 37),
+                            needleColor: const Color.fromARGB(180, 212, 20, 164),
                             knobStyle: const KnobStyle(
                                 knobRadius: 0.07,
+                                borderWidth: 0.02,
+                                borderColor: Colors.red,
                                 sizeUnit: GaugeSizeUnit.factor,
-                                color: Color.fromARGB(180, 0, 169, 181)),
+                                color: Color.fromARGB(180, 17, 176, 30)),
                           )
                         ],
                       )
@@ -148,11 +160,11 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 10,
             ),
-            Text('Temperature: ${_temperature.toString()} C',
-            style: const TextStyle(fontSize: 16),)
-            
+            Text(
+              'Temperature: ${_temperature.toString()} C',
+              style: const TextStyle(fontSize: 16),
+            )
           ],
-
         ),
       ),
     );

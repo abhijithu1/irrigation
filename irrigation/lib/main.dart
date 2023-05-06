@@ -32,18 +32,14 @@ class _HomeScreenState extends State<HomeScreen> {
   int _temperature = 45;
   final _humidity = 100.0;
   final _moisture = 50.0;
-  String onTimehr = hour.toString();
-  String onTimemin = min.toString();
+
+  void _refreshHomeScreen() {
+    setState(() {});
+  }
 
   void _updateTemperature(int value) {
     setState(() {
       _temperature = value;
-    });
-  }
-  void _updateOnTime(String value1,String value2) {
-    setState(() {
-      onTimehr = value1;
-      onTimemin = value2;
     });
   }
 
@@ -63,151 +59,164 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                    child: Column(children: [
-                  SfRadialGauge(
-                    axes: <RadialAxis>[
-                      RadialAxis(
-                        minimum: 0,
-                        maximum: 100,
-                        showLabels: true,
-                        showTicks: true,
-                        axisLineStyle: const AxisLineStyle(
-                          thickness: 0.2,
-                          cornerStyle: CornerStyle.bothCurve,
-                          color: Color.fromARGB(30, 225, 138, 24),
-                          thicknessUnit: GaugeSizeUnit.factor,
-                        ),
-                        pointers: <GaugePointer>[
-                          RangePointer(
-                            value: _humidity.toDouble(),
-                            width: 0.2,
-                            sizeUnit: GaugeSizeUnit.factor,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                      child: Column(children: [
+                    SfRadialGauge(
+                      axes: <RadialAxis>[
+                        RadialAxis(
+                          minimum: 0,
+                          maximum: 100,
+                          showLabels: true,
+                          showTicks: true,
+                          axisLineStyle: const AxisLineStyle(
+                            thickness: 0.2,
+                            cornerStyle: CornerStyle.bothCurve,
+                            color: Color.fromARGB(30, 225, 138, 24),
+                            thicknessUnit: GaugeSizeUnit.factor,
                           ),
-                          NeedlePointer(
-                            value: _humidity.toDouble(),
-                            needleLength: 0.7,
-                            lengthUnit: GaugeSizeUnit.factor,
-                            needleColor:
-                                const Color.fromARGB(180, 212, 20, 164),
-                            enableAnimation: true,
-                            animationType: AnimationType.bounceOut,
-                            animationDuration: 1500,
-                            knobStyle: const KnobStyle(
-                                knobRadius: 0.07,
-                                borderWidth: 0.02,
-                                borderColor: Colors.red,
-                                sizeUnit: GaugeSizeUnit.factor,
-                                color: Color.fromARGB(180, 17, 176, 30)),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const Text(
-                    'Humidity',
-                    style: TextStyle(fontSize: 16),
-                  )
-                ])),
-                Expanded(
-                    child: Column(children: [
-                  SfRadialGauge(
-                    axes: <RadialAxis>[
-                      RadialAxis(
-                        minimum: 0,
-                        maximum: 100,
-                        showLabels: true,
-                        showTicks: true,
-                        axisLineStyle: const AxisLineStyle(
-                          thickness: 0.2,
-                          cornerStyle: CornerStyle.bothCurve,
-                          color: Color.fromARGB(30, 225, 138, 24),
-                          thicknessUnit: GaugeSizeUnit.factor,
-                        ),
-                        pointers: <GaugePointer>[
-                          RangePointer(
-                            value: _moisture.toDouble(),
-                            width: 0.2,
-                            sizeUnit: GaugeSizeUnit.factor,
-                          ),
-                          NeedlePointer(
-                            enableAnimation: true,
-                            animationType: AnimationType.bounceOut,
-                            animationDuration: 1500,
-                            value: _moisture.toDouble(),
-                            needleLength: 0.7,
-                            lengthUnit: GaugeSizeUnit.factor,
-                            needleColor:
-                                const Color.fromARGB(180, 212, 20, 164),
-                            knobStyle: const KnobStyle(
-                                knobRadius: 0.07,
-                                borderWidth: 0.02,
-                                borderColor: Colors.red,
-                                sizeUnit: GaugeSizeUnit.factor,
-                                color: Color.fromARGB(180, 17, 176, 30)),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  
-                  const Text(
-                    'Moisture',
-                    style: TextStyle(fontSize: 16),
-                  )
-                ]))
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Temperature: ${_temperature.toString()} C',
-              style: const TextStyle(fontSize: 16),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ThirdScreen(),
-                            ));
-                      },
-                      style: const ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll<Color>(Colors.green),
-                      ),
-                      child: const Text('AUTO MODE'),
+                          pointers: <GaugePointer>[
+                            RangePointer(
+                              value: _humidity.toDouble(),
+                              width: 0.2,
+                              sizeUnit: GaugeSizeUnit.factor,
+                            ),
+                            NeedlePointer(
+                              value: _humidity.toDouble(),
+                              needleLength: 0.7,
+                              lengthUnit: GaugeSizeUnit.factor,
+                              needleColor:
+                                  const Color.fromARGB(180, 212, 20, 164),
+                              enableAnimation: true,
+                              animationType: AnimationType.bounceOut,
+                              animationDuration: 1500,
+                              knobStyle: const KnobStyle(
+                                  knobRadius: 0.07,
+                                  borderWidth: 0.02,
+                                  borderColor: Colors.red,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: Color.fromARGB(180, 17, 176, 30)),
+                            )
+                          ],
+                        )
+                      ],
                     ),
-                    Text("ON TIME: $onTimehr : $onTimemin ")
-                  ],
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SecondScreen(),
-                        ));
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.green),
+                    const Text(
+                      'Humidity',
+                      style: TextStyle(fontSize: 16),
+                    )
+                  ])),
+                  Expanded(
+                      child: Column(children: [
+                    SfRadialGauge(
+                      axes: <RadialAxis>[
+                        RadialAxis(
+                          minimum: 0,
+                          maximum: 100,
+                          showLabels: true,
+                          showTicks: true,
+                          axisLineStyle: const AxisLineStyle(
+                            thickness: 0.2,
+                            cornerStyle: CornerStyle.bothCurve,
+                            color: Color.fromARGB(30, 225, 138, 24),
+                            thicknessUnit: GaugeSizeUnit.factor,
+                          ),
+                          pointers: <GaugePointer>[
+                            RangePointer(
+                              value: _moisture.toDouble(),
+                              width: 0.2,
+                              sizeUnit: GaugeSizeUnit.factor,
+                            ),
+                            NeedlePointer(
+                              enableAnimation: true,
+                              animationType: AnimationType.bounceOut,
+                              animationDuration: 1500,
+                              value: _moisture.toDouble(),
+                              needleLength: 0.7,
+                              lengthUnit: GaugeSizeUnit.factor,
+                              needleColor:
+                                  const Color.fromARGB(180, 212, 20, 164),
+                              knobStyle: const KnobStyle(
+                                  knobRadius: 0.07,
+                                  borderWidth: 0.02,
+                                  borderColor: Colors.red,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: Color.fromARGB(180, 17, 176, 30)),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 30),
+                      child: Text(
+                        'Moisture',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    )
+                  ]))
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Temperature: ${_temperature.toString()} C',
+                style: const TextStyle(fontSize: 16),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const ThirdScreen(),
+                              ));
+                        },
+                        style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll<Color>(Colors.green),
+                        ),
+                        child: const Text('AUTO MODE'),
+                      ),
+                      Text("ON TIME: $hourHome : $minHome ")
+                    ],
                   ),
-                  child: const Text('MANUAL MODE'),
-                ),
-              ],
-            )
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SecondScreen(),
+                          ));
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor:
+                          MaterialStatePropertyAll<Color>(Colors.green),
+                    ),
+                    child: const Text('MANUAL MODE'),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(onPressed: () {}, icon: const Icon(Icons.home))
           ],
         ),
       ),
@@ -250,9 +259,11 @@ class ThirdScreen extends StatefulWidget {
 }
 
 class _ThirdScreenState extends State<ThirdScreen> {
-
   final _formkey = GlobalKey<FormState>();
   final _formkey1 = GlobalKey<FormState>();
+  void _refreshHomeScreen() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -312,8 +323,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Please Enter the Hour.";
-                          }
-                          else if (int.parse(value) >= 25){
+                          } else if (int.parse(value) >= 25) {
                             return "less than 24";
                           }
                           return null;
@@ -336,8 +346,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Please Enter the Minute.";
-                          }
-                          else if (int.parse(value) >= 61){
+                          } else if (int.parse(value) >= 61) {
                             return "Less than 60";
                           }
                           return null;
@@ -354,9 +363,12 @@ class _ThirdScreenState extends State<ThirdScreen> {
                       height: 60,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formkey.currentState!.validate() && _formkey1.currentState!.validate()) {
+                          if (_formkey.currentState!.validate() &&
+                              _formkey1.currentState!.validate()) {
                             _formkey.currentState!.save();
                             _formkey1.currentState!.save();
+                            hourHome = hour;
+                            minHome = min;
                             print('Hour: $hour, Minute: $min');
                           }
                         },
@@ -370,6 +382,20 @@ class _ThirdScreenState extends State<ThirdScreen> {
                   ),
                 ],
               )
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          shape: const CircularNotchedRectangle(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _refreshHomeScreen();
+                  },
+                  icon: const Icon(Icons.home))
             ],
           ),
         ));

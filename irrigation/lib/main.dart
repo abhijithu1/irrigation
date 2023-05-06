@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'globals.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,10 +32,18 @@ class _HomeScreenState extends State<HomeScreen> {
   int _temperature = 45;
   final _humidity = 100.0;
   final _moisture = 50.0;
+  String onTimehr = hour.toString();
+  String onTimemin = min.toString();
 
   void _updateTemperature(int value) {
     setState(() {
       _temperature = value;
+    });
+  }
+  void _updateOnTime(String value1,String value2) {
+    setState(() {
+      onTimehr = value1;
+      onTimemin = value2;
     });
   }
 
@@ -100,9 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   const Text(
                     'Humidity',
                     style: TextStyle(fontSize: 16),
@@ -149,9 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  
                   const Text(
                     'Moisture',
                     style: TextStyle(fontSize: 16),
@@ -169,19 +173,24 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ThirdScreen(),
-                        ));
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.green),
-                  ),
-                  child: const Text('AUTO MODE'),
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ThirdScreen(),
+                            ));
+                      },
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll<Color>(Colors.green),
+                      ),
+                      child: const Text('AUTO MODE'),
+                    ),
+                    Text("ON TIME: $onTimehr : $onTimemin ")
+                  ],
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -241,8 +250,9 @@ class ThirdScreen extends StatefulWidget {
 }
 
 class _ThirdScreenState extends State<ThirdScreen> {
-  int? hour;
-  int? min;
+
+  final _formkey = GlobalKey<FormState>();
+  final _formkey1 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -279,50 +289,85 @@ class _ThirdScreenState extends State<ThirdScreen> {
               ),
               Container(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: const Text("On time",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 175, 7, 7),
-                  fontSize: 25,
-                ),),
+                child: const Text(
+                  "On time",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 175, 7, 7),
+                    fontSize: 25,
+                  ),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: 'Hour',
-                        border: OutlineInputBorder(),
+                    child: Form(
+                      key: _formkey,
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          labelText: 'Hour',
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please Enter the Hour.";
+                          }
+                          else if (int.parse(value) >= 25){
+                            return "less than 24";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          hour = int.parse(value!);
+                        },
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty){
-                          return "Please Enter the Hour.";
-                        }
-                        return null;
-                      },
-                      onSaved: (value){
-                        hour = int.parse(value!);
-                      },
                     ),
                   ),
-                  Expanded(child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: "Minutes",
-                      border: OutlineInputBorder(),
-                      
+                  Expanded(
+                    child: Form(
+                      key: _formkey1,
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          labelText: "Minutes",
+                          border: OutlineInputBorder(),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please Enter the Minute.";
+                          }
+                          else if (int.parse(value) >= 61){
+                            return "Less than 60";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          min = int.parse(value!);
+                        },
+                      ),
                     ),
-                    validator: (value) {
-                        if (value == null || value.isEmpty){
-                          return "Please Enter the Minute.";
-                        }
-                        return null;
-                      },
-                      onSaved: (value){
-                        min = int.parse(value!);
-                      },
-                  ))
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      width: 250,
+                      height: 60,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formkey.currentState!.validate() && _formkey1.currentState!.validate()) {
+                            _formkey.currentState!.save();
+                            _formkey1.currentState!.save();
+                            print('Hour: $hour, Minute: $min');
+                          }
+                        },
+                        style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll<Color>(
+                              Color.fromARGB(255, 169, 26, 171)),
+                        ),
+                        child: const Text('SAVE'),
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],

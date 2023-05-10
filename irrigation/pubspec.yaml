@@ -30,7 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_gauges: ^21.2.3
+  syncfusion_flutter_gauges: ^21.2.4
+  flutter_bloc: ^8.1.2
+  equatable: ^2.0.5
   
 
 

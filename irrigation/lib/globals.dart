@@ -1,8 +1,8 @@
-///Global variables will be defined here 
-library my_prj.globals;
+int? hour = 00;
+int? min = 00;
+String hourstr = hour.toString();
+String minstr = min.toString();
+bool valve1 = false;
+bool valve2 = false;
+bool pump = true;
 
-
-  int? hour;
-  int? min;
-  int? hourHome;
-  int? minHome;

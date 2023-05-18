@@ -13,6 +13,7 @@ class AutoMode extends StatefulWidget {
 }
 
 class _AutoModeState extends State<AutoMode> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +63,7 @@ class _AutoModeState extends State<AutoMode> {
               children: [
                 Expanded(
                   child: Form(
-                    key: UniqueKey(),
+                    key: formkey1,
                     child: TextFormField(
                       controller: _controller1,
                       keyboardType: TextInputType.number,
@@ -86,7 +87,7 @@ class _AutoModeState extends State<AutoMode> {
                 ),
                 Expanded(
                   child: Form(
-                    key: UniqueKey(),
+                    key: formkey2,
                     child: TextFormField(
                       controller: _controller2,
                       keyboardType: TextInputType.number,
@@ -120,11 +121,11 @@ class _AutoModeState extends State<AutoMode> {
                           formkey1.currentState!.save();
                           formkey2.currentState!.save();
                           setState(() {
-                          hourstr = _controller1.text;
-                          minstr = _controller2.text;
-                        });
+                            hourstr = _controller1.text;
+                            minstr = _controller2.text;
+                          });
                         }
-                        
+
                         print("Hour: $hourstr , min: $minstr");
                       },
                       style: const ButtonStyle(

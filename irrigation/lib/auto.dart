@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:irrigation/main.dart';
 import 'globals.dart';
+
+TextEditingController _controller1 = TextEditingController();
+TextEditingController _controller2 = TextEditingController();
 
 class AutoMode extends StatefulWidget {
   const AutoMode({super.key});
@@ -9,16 +13,15 @@ class AutoMode extends StatefulWidget {
 }
 
 class _AutoModeState extends State<AutoMode> {
-  TextEditingController _controller1 = TextEditingController();
-  TextEditingController _controller2 = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.amber[400],
         shadowColor: Colors.redAccent,
         centerTitle: true,
+        automaticallyImplyLeading: false,
         title: const Text(
           "Irrigation",
           style: TextStyle(
@@ -59,6 +62,7 @@ class _AutoModeState extends State<AutoMode> {
               children: [
                 Expanded(
                   child: Form(
+                    key: UniqueKey(),
                     child: TextFormField(
                       controller: _controller1,
                       keyboardType: TextInputType.number,
@@ -82,6 +86,7 @@ class _AutoModeState extends State<AutoMode> {
                 ),
                 Expanded(
                   child: Form(
+                    key: UniqueKey(),
                     child: TextFormField(
                       controller: _controller2,
                       keyboardType: TextInputType.number,
@@ -110,10 +115,16 @@ class _AutoModeState extends State<AutoMode> {
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
-                        setState(() {
+                        if (formkey1.currentState!.validate() &&
+                            formkey2.currentState!.validate()) {
+                          formkey1.currentState!.save();
+                          formkey2.currentState!.save();
+                          setState(() {
                           hourstr = _controller1.text;
                           minstr = _controller2.text;
                         });
+                        }
+                        
                         print("Hour: $hourstr , min: $minstr");
                       },
                       style: const ButtonStyle(
@@ -137,7 +148,10 @@ class _AutoModeState extends State<AutoMode> {
           children: <Widget>[
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
                 },
                 icon: const Icon(Icons.home))
           ],

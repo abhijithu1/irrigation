@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'globals.dart';
 
 class ManualMode extends StatefulWidget {
@@ -13,6 +11,21 @@ class ManualMode extends StatefulWidget {
 class _ManualModeState extends State<ManualMode> {
   @override
   Widget build(BuildContext context) {
+    if (valve1) {
+      textv1 = "ON";
+    } else {
+      textv1 = "OFF";
+    }
+    if (valve2) {
+      textv2 = "ON";
+    } else {
+      textv2 = "OFF";
+    }
+    if (valve1 || valve2) {
+      textP = "ON";
+    } else {
+      textP = "OFF";
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber[400],
@@ -28,28 +41,76 @@ class _ManualModeState extends State<ManualMode> {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-              alignment: Alignment.topCenter,
-              child: const Text(
-                'MANUAL MODE',
-                style: TextStyle(
-                  fontSize: 20.0,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                    top: 50,
+                  ),
+                  child: const Text(
+                    'MANUAL MODE',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Color.fromARGB(170, 53, 0, 186),
+                    ),
+                  ),
                 ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 75),
+                  child: Text("PUMP STATE : $textP"),
+                ),
+              ],
+            ),
+            Container(
+              padding: const EdgeInsets.only(top: 50),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("VALVE1 : $textv1"),
+                  Text("VALVE2 : $textv2"),
+                ],
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Text("PUMP STATE : ${pump.toString()}"),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text("VALVE1 : ${valve1.toString()}"),
-            ),
-            Expanded(
-              flex: 1,
-              child: Text("VALVE2 : ${valve2.toString()}"),
-            ),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Switch(
+                    activeColor: Colors.red,
+                    activeTrackColor: Colors.green,
+                    thumbColor: MaterialStateProperty.all<Color?>(Colors.amber),
+                      value: valve1,
+                      onChanged: (value) {
+                        setState(() {
+                          if (value == true) {
+                            textv1 = "ON";
+                          } else {
+                            textv1 = "OFF";
+                          }
+                        });
+                      }),
+                  Switch(
+                    activeColor: Colors.red,
+                    activeTrackColor: Colors.green,
+                      value: valve2,
+                      onChanged: (value) {
+                        setState(() {
+                          if (value == true) {
+                            textv2 = "ON";
+                          } else {
+                            textv2 = "OFF";
+                          }
+                        });
+                      })
+                ],
+              ),
+            )
           ],
         ),
       ),

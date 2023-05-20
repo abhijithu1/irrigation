@@ -3,6 +3,7 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'auto.dart';
 import 'manual.dart';
 import 'globals.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());

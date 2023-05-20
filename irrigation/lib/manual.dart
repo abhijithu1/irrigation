@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'globals.dart';
+import 'main.dart';
 
 class ManualMode extends StatefulWidget {
   const ManualMode({super.key});
@@ -77,39 +78,37 @@ class _ManualModeState extends State<ManualMode> {
                 ],
               ),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Switch(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Switch(
                     activeColor: Colors.red,
                     activeTrackColor: Colors.green,
                     thumbColor: MaterialStateProperty.all<Color?>(Colors.amber),
-                      value: valve1,
-                      onChanged: (value) {
-                        setState(() {
-                          if (value == true) {
-                            textv1 = "ON";
-                          } else {
-                            textv1 = "OFF";
-                          }
-                        });
-                      }),
-                  Switch(
+                    value: valve1,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value == true) {
+                          textv1 = "ON";
+                        } else {
+                          textv1 = "OFF";
+                        }
+                      });
+                    }),
+                Switch(
                     activeColor: Colors.red,
                     activeTrackColor: Colors.green,
-                      value: valve2,
-                      onChanged: (value) {
-                        setState(() {
-                          if (value == true) {
-                            textv2 = "ON";
-                          } else {
-                            textv2 = "OFF";
-                          }
-                        });
-                      })
-                ],
-              ),
+                    value: valve2,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value == true) {
+                          textv2 = "ON";
+                        } else {
+                          textv2 = "OFF";
+                        }
+                      });
+                    })
+              ],
             )
           ],
         ),
@@ -121,7 +120,10 @@ class _ManualModeState extends State<ManualMode> {
           children: <Widget>[
             IconButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
                 },
                 icon: const Icon(Icons.home))
           ],

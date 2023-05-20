@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>768548851726-4to6s2s61ha6q45fk5t6pv12iq5dl49d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.768548851726-4to6s2s61ha6q45fk5t6pv12iq5dl49d</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBRaMk8u8Gpp58L0YI4GkhY76WIYHsQk2Y</string>
+	<key>GCM_SENDER_ID</key>
+	<string>768548851726</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.irrigation</string>
+	<key>PROJECT_ID</key>
+	<string>dixonnnn-30e1b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dixonnnn-30e1b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:768548851726:ios:12a7e7aec9ecb5cf966c5f</string>
+</dict>
+</plist>

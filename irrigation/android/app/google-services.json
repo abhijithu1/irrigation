@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "768548851726",
+    "project_id": "dixonnnn-30e1b",
+    "storage_bucket": "dixonnnn-30e1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768548851726:android:40c844406af3b2af966c5f",
+        "android_client_info": {
+          "package_name": "com.example.irrigation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768548851726-f5o889s1rtos11863gs2lbs85gndef5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGddwDIWi-Z2Jkh_vXoy3ifPwGTYSEWGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768548851726-f5o889s1rtos11863gs2lbs85gndef5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

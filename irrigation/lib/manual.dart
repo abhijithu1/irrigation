@@ -29,6 +29,7 @@ class _ManualModeState extends State<ManualMode> {
     }
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.amber[400],
         shadowColor: Colors.redAccent,
         centerTitle: true,

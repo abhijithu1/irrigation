@@ -5,6 +5,7 @@ import 'manual.dart';
 import 'globals.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -65,65 +66,98 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      SfRadialGauge(
-                        axes: <RadialAxis>[
-                          RadialAxis(
-                            minimum: 0,
-                            maximum: 100,
-                            showLabels: true,
-                            showLastLabel: true,
-                            showTicks: true,
-                            showFirstLabel: true,
-                            axisLineStyle: const AxisLineStyle(
-                              thickness: 0.2,
-                              cornerStyle: CornerStyle.bothCurve,
-                              color: Color.fromARGB(30, 225, 138, 24),
-                              thicknessUnit: GaugeSizeUnit.factor,
-                            ),
-                            pointers: <GaugePointer>[
-                              RangePointer(
-                                value: _humidity.toDouble(),
-                                width: 0.2,
-                                sizeUnit: GaugeSizeUnit.factor,
-                              ),
-                              NeedlePointer(
-                                value: _humidity.toDouble(),
-                                needleLength: 0.7,
-                                lengthUnit: GaugeSizeUnit.factor,
-                                needleColor:
-                                    const Color.fromARGB(180, 212, 20, 164),
-                                enableAnimation: true,
-                                animationType: AnimationType.bounceOut,
-                                animationDuration: 1500,
-                                knobStyle: const KnobStyle(
-                                    knobRadius: 0.07,
-                                    borderWidth: 0.02,
-                                    borderColor: Colors.red,
-                                    sizeUnit: GaugeSizeUnit.factor,
-                                    color: Color.fromARGB(180, 17, 176, 30)),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      const Text(
-                        "Humidity",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                    child: Column(
-                  children: [
-                    SfRadialGauge(
+            SizedBox(
+              height: 200,
+              width: 600,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: SfRadialGauge(
+                      enableLoadingAnimation: true,
+                      animationDuration: 4500,
+                      title: const GaugeTitle(
+                          text: 'Humidity',
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                              color: Colors.black,
+                              fontFamily: 'Times'),
+                          alignment: GaugeAlignment.center),
                       axes: <RadialAxis>[
                         RadialAxis(
+                          annotations: <GaugeAnnotation>[
+                            GaugeAnnotation(
+                                widget: Text(_humidity.toString(),
+                                    style: const TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold)),
+                                angle: 90,
+                                positionFactor: 0.5)
+                          ],
+                          minimum: 0,
+                          maximum: 100,
+                          showLabels: true,
+                          showLastLabel: true,
+                          showTicks: true,
+                          showFirstLabel: true,
+                          axisLineStyle: const AxisLineStyle(
+                            thickness: 0.2,
+                            cornerStyle: CornerStyle.bothCurve,
+                            color: Color.fromARGB(30, 225, 138, 24),
+                            thicknessUnit: GaugeSizeUnit.factor,
+                          ),
+                          pointers: <GaugePointer>[
+                            RangePointer(
+                              value: _humidity.toDouble(),
+                              width: 0.2,
+                              sizeUnit: GaugeSizeUnit.factor,
+                            ),
+                            NeedlePointer(
+                              value: _humidity.toDouble(),
+                              needleLength: 0.7,
+                              lengthUnit: GaugeSizeUnit.factor,
+                              needleColor:
+                                  const Color.fromARGB(180, 212, 20, 164),
+                              enableAnimation: true,
+                              animationType: AnimationType.bounceOut,
+                              animationDuration: 1500,
+                              knobStyle: const KnobStyle(
+                                  knobRadius: 0.07,
+                                  borderWidth: 0.02,
+                                  borderColor: Colors.red,
+                                  sizeUnit: GaugeSizeUnit.factor,
+                                  color: Color.fromARGB(180, 17, 176, 30)),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: SfRadialGauge(
+                      enableLoadingAnimation: true,
+                      animationDuration: 4500,
+                      title: const GaugeTitle(
+                          text: 'Moisture',
+                          textStyle: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                              color: Colors.black,
+                              fontFamily: 'Times'),
+                          alignment: GaugeAlignment.center),
+                      axes: <RadialAxis>[
+                        RadialAxis(
+                          annotations: <GaugeAnnotation>[
+                            GaugeAnnotation(
+                                widget: Text(_moisture.toString(),
+                                    style: const TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold)),
+                                angle: 90,
+                                positionFactor: 0.5)
+                          ],
                           minimum: 0,
                           maximum: 100,
                           showLabels: true,
@@ -162,13 +196,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    const Text(
-                      "Moisture",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ))
-              ],
+                  ),
+                ],
+              ),
             ),
             Text(
               "Temperature: ${_temperature.toString()}C",

@@ -20,7 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    ///Dont change anything above,
+    ///Dont change anything above
     ///Below comments applicable to all the screens like auto , manual .
     ///For UI modification , change the design variables of the widgets which appear in the screen.
     ///There are some keys are also specified to some of the widgets, Dont change that too, YOU CAN CHANGE THE ROWS AND COLUMNS IF YOU WANT.
